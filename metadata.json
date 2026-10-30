@@ -1,0 +1,6 @@
+{
+  "name": "TKI - Instrumento de Gestão de Conflitos Thomas-Kilmann",
+  "description": "Avaliação completa dos 5 modos de gestão de conflitos de Thomas-Kilmann com Inteligência Emocional (IE), Comunicação Não-Violenta (CNV), matriz 2D e relatório executivo em PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
