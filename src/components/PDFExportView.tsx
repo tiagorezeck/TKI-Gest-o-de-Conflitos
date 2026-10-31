@@ -295,7 +295,10 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({ result }) => {
                       style={{ left: `${markerPercent}%` }}
                     />
                   </div>
-                  <div className="text-[10px] text-slate-400">{sc.normDescription}</div>
+                  <div className="text-[9.5px] text-slate-300 leading-snug">
+                    <strong className="text-slate-100">{p.levelInterpretations[sc.percentileLevel].levelTitle.split('|')[0].trim()}: </strong>
+                    {p.levelInterpretations[sc.percentileLevel].meaning}
+                  </div>
                 </div>
               );
             })}

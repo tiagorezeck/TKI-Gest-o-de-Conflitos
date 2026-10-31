@@ -45,6 +45,47 @@ export const TKI_PROFILES: Record<TKIMode, ModeProfile> = {
       'Procrastinação de decisões duras, permitindo que problemas se agravem.',
       'Dificuldade de dizer "não", culminando em sobrecarga e perda de autoridade perante o grupo.',
     ],
+    levelInterpretations: {
+      low: {
+        levelTitle: 'Baixa Competição (Percentil 0% - 25% | Pontos 0 a 3)',
+        meaning:
+          'Você raramente recorre à autoridade formal, imposição ou firmeza unilateral para resolver discordâncias. Tende a hesitar em bater o martelo sozinho, preferindo esperar por consensos ou ceder para não parecer autoritário.',
+        behaviorSigns: [
+          'Dificuldade em dizer um "não" categórico mesmo quando demandas ultrapassam limites aceitáveis.',
+          'Receio de ser rotulado como agressivo, arrogante ou insensível diante dos colegas.',
+          'Risco de postergar decisões difíceis ou impopulares que protegeriam os resultados do negócio.',
+          'Frustração acumulada ao ver boas propostas suas serem preteridas por pessoas que falam mais alto.',
+        ],
+        calibrationTip:
+          'Pratique a assertividade respeitosa: expressar convicções necessárias e impor limites operacionais não é agressão, é zelar pela sustentabilidade do seu trabalho e da equipe.',
+      },
+      medium: {
+        levelTitle: 'Competição Equilibrada (Percentil 25% - 75% | Pontos 4 a 8)',
+        meaning:
+          'Você utiliza a assertividade e a autoridade com equilíbrio e maturidade. Sabe sustentar posições firmes e assumir o leme em situações urgentes ou de alta relevância estratégica, sem atropelar o diálogo cotidiano.',
+        behaviorSigns: [
+          'Capacidade de defender convicções com clareza e dados sem transformar o debate em disputa pessoal.',
+          'Coragem para assumir decisões difíceis em momentos de crise ou quando a equipe está paralisada.',
+          'Respeito aos limites alheios, sem abrir mão das metas centrais do projeto.',
+          'Transita com naturalidade para a negociação ou colaboração quando a urgência não é crítica.',
+        ],
+        calibrationTip:
+          'Continue calibrando pelo contexto: sempre verifique se o momento exige diretividade imediata ou se há espaço para construir soluções com o grupo.',
+      },
+      high: {
+        levelTitle: 'Alta Competição (Percentil 75% - 100% | Pontos 9 a 12)',
+        meaning:
+          'Competir é seu reflexo automático sob pressão. Você foca intensamente na vitória da sua tese e no atingimento rápido de metas, podendo recorrer com frequência a argumentos contundentes ou autoridade para vencer divergências.',
+        behaviorSigns: [
+          'Sensação persistente de que "se eu não assumir o controle total, o resultado não sairá com a qualidade exigida".',
+          'Impaciência com reuniões longas de alinhamento quando você já tem clareza da solução ideal.',
+          'Risco de os pares e liderados se calarem ou concordarem por receio de confrontá-lo.',
+          'Dificuldade em identificar pontos cegos que poderiam ser alertados pela contraparte.',
+        ],
+        calibrationTip:
+          'Faça uma pausa deliberada de 3 segundos antes de contra-argumentar. Convide ativamente a equipe: "Qual é o maior risco dessa minha rota sob a perspectiva de vocês?".',
+      },
+    },
     eiReflectionQuestions: [
       'Quando me sinto contrariado(a), qual emoção surge primeiro: irritação, ansiedade por controle ou receio de desrespeito?',
       'Estou defendendo o melhor para a organização ou alimentando o ego de precisar provar que estou certo(a)?',
@@ -128,6 +169,47 @@ export const TKI_PROFILES: Record<TKIMode, ModeProfile> = {
       'Soluções frágeis e superficiais que voltam a gerar atrito poucos dias depois.',
       'Baixo sentimento de pertencimento e distanciamento entre liderança e liderados.',
     ],
+    levelInterpretations: {
+      low: {
+        levelTitle: 'Baixa Colaboração (Percentil 0% - 25% | Pontos 0 a 5)',
+        meaning:
+          'Você raramente investe tempo para investigar a fundo as preocupações mútuas e cocriar soluções conjuntas. Tende a preferir atalhos mais rápidos, como dividir concessões mecanicamente ou aceitar a imposição do outro.',
+        behaviorSigns: [
+          'Crença de que "discutir em profundidade demora demais e gera reuniões improdutivas".',
+          'Tendência a se acomodar ou a fechar acordos superficiais que voltam a estourar semanas depois.',
+          'Dificuldade em criar parcerias sinérgicas onde ambos os lados saiam fortalecidos.',
+          'Sensação frequente de isolamento na resolução de problemas complexos.',
+        ],
+        calibrationTip:
+          'Escolha um assunto estratégico esta semana e dedique 30 minutos exclusivamente para mapear as necessidades reais da outra parte antes de propor qualquer solução fechada.',
+      },
+      medium: {
+        levelTitle: 'Colaboração Equilibrada (Percentil 25% - 75% | Pontos 6 a 9)',
+        meaning:
+          'Você demonstra excelente maturidade colaborativa. Reconhece o valor inestimável de uma solução ganha-ganha para questões cruciais, sem a ingenuidade de querer consenso unânime em assuntos operacionais rotineiros.',
+        behaviorSigns: [
+          'Sabe escutar com empatia e incorporar perspectivas complementares quando o tema é relevante.',
+          'Não força reuniões exaustivas para assuntos banais que um meio-termo ou decisão rápida resolve.',
+          'Gera comprometimento genuíno das pessoas na implementação dos acordos.',
+          'Identifica com clareza quando a contraparte está de boa-fé ou quando tem postura competitiva.',
+        ],
+        calibrationTip:
+          'Continue aplicando essa disciplina situacional: reserve a colaboração aprofundada para onde houver confiança, alto impacto e tempo disponível.',
+      },
+      high: {
+        levelTitle: 'Alta Colaboração (Percentil 75% - 100% | Pontos 10 a 12)',
+        meaning:
+          'Você tem uma crença apaixonada na cooperação e tenta integrar todas as visões em absolutamente qualquer tema. Porém, isso pode gerar sobrecarga severa, lentidão no cronograma e exaustão por excesso de reuniões.',
+        behaviorSigns: [
+          'Inquietação com decisões rápidas que não tiveram a participação extensiva de todos.',
+          'Dificuldade de aceitar soluções intermediárias práticas, buscando sempre o "ótimo inatingível".',
+          'Frustração profunda quando a contraparte joga de forma estritamente competitiva.',
+          'Risco de sobrecarregar a agenda própria e da equipe com encontros reflexivos em demasia.',
+        ],
+        calibrationTip:
+          'Use o "timeboxing" (limite rígido de tempo): defina um prazo final para cocriar; se a solução ótima não surgir até a data limite, adote um compromisso provisório funcional.',
+      },
+    },
     eiReflectionQuestions: [
       'Estou exigindo consenso absoluto até em temas triviais que poderiam ser resolvidos com um compromisso ágil?',
       'Sei discernir quando o outro está jogando de forma competitiva ou quando há abertura real para colaboração?',
@@ -211,6 +293,47 @@ export const TKI_PROFILES: Record<TKIMode, ModeProfile> = {
       'Incapacidade de fazer trocas operacionais simples no dia a dia da gestão.',
       'Percepção de rigidez ou teimosia perante colegas e pares.',
     ],
+    levelInterpretations: {
+      low: {
+        levelTitle: 'Baixo Compromisso (Percentil 0% - 25% | Pontos 0 a 4)',
+        meaning:
+          'Você tem resistência em fazer concessões intermediárias ou dividir a diferença. Tende a enxergar as situações de forma dicotômica ("ou é feito do jeito ideal, ou não vale a pena"), o que pode emperrar o andamento de projetos.',
+        behaviorSigns: [
+          'Desconforto em abrir mão de qualquer especificação técnica em prol de cumprir um prazo.',
+          'Dificuldade em aceitar a política e a barganha natural do ambiente organizacional.',
+          'Risco de gerar impasses prolongados que paralisam a entrega de outras equipes.',
+          'Pode ser rotulado por colegas como intransigente, teimoso ou perfeccionista.',
+        ],
+        calibrationTip:
+          'Identifique previamente seus 2 pontos inegociáveis. Nos demais itens, pratique oferecer concessões intencionais para manter o fluxo de trabalho em movimento.',
+      },
+      medium: {
+        levelTitle: 'Compromisso Equilibrado (Percentil 25% - 75% | Pontos 5 a 9)',
+        meaning:
+          'Você demonstra pragmatismo e equilíbrio notáveis. Sabe que um bom acordo funcional onde ambas as partes cedem um pouco é frequentemente a saída mais inteligente para destravar a esteira operacional.',
+        behaviorSigns: [
+          'Habilidade para propor alternativas do tipo "cada um dá um passo atrás" com justiça.',
+          'Mantém a cadência das entregas sem comprometer o clima ou travar a equipe.',
+          'Sensatez para reconhecer quando o tempo escasso não justifica mais discussões teóricas.',
+          'Percebido como um profissional razoável, flexível e orientado a soluções.',
+        ],
+        calibrationTip:
+          'Ao pactuar um meio-termo, estabeleça marcos formais de acompanhamento para avaliar se o acordo temporário atingiu a qualidade pretendida.',
+      },
+      high: {
+        levelTitle: 'Alto Compromisso (Percentil 75% - 100% | Pontos 10 a 12)',
+        meaning:
+          'Seu primeiro impulso perante qualquer atrito é negociar a média pela metade. Embora destrave impasses com extrema rapidez, você pode estar produzindo soluções medíocres ("nem carne, nem peixe") que não resolvem as causas estruturais.',
+        behaviorSigns: [
+          'Pressa em dividir concessões apenas para fugir da tensão do debate.',
+          'Perda da oportunidade de questionar premissas e descobrir soluções criativas ganha-ganha.',
+          'Estímulo indireto para que outros inflacionem pedidos sabendo que você negociará pela metade.',
+          'Sensação posterior de frustração de ambos os lados por não terem seus reais desejos atendidos.',
+        ],
+        calibrationTip:
+          'Antes de propor dividir a diferença, pergunte: "Se tivermos 10 minutos para explorar uma terceira alternativa superior, o que poderíamos tentar antes de abrir mão?".',
+      },
+    },
     eiReflectionQuestions: [
       'Estou cedendo cedo demais apenas pelo desconforto de tolerar a tensão de um debate produtivo?',
       'O meio-termo acordado realmente resolve o problema ou apenas "chuta a lata para a frente"?',
@@ -295,6 +418,47 @@ export const TKI_PROFILES: Record<TKIMode, ModeProfile> = {
       'Reações imediatistas desmedidas antes de colher informações suficientes.',
       'Cansaço mental por incapacidade de delegar ou deixar a poeira assentar.',
     ],
+    levelInterpretations: {
+      low: {
+        levelTitle: 'Baixa Evitação (Percentil 0% - 25% | Pontos 0 a 4)',
+        meaning:
+          'Você quase nunca recua, silencia ou adia uma discussão. Tende a abordar qualquer atrito no exato instante em que surge. Embora isso demonstre coragem, pode gerar exaustão contínua por "comprar todas as brigas", inclusive as banais.',
+        behaviorSigns: [
+          'Inquietação intensa diante de desacordos não resolvidos de imediato.',
+          'Entrar em debates acalorados sobre temas de baixíssimo impacto estratégico.',
+          'Insistir em discutir quando os ânimos da outra parte estão exaltados, agravando a tensão.',
+          'Risco de cansaço mental próprio e da equipe por excesso de discussões de relacionamento.',
+        ],
+        calibrationTip:
+          'Pratique a pausa de 24 horas: pergunte-se "Esse tema terá alguma relevância daqui a 3 meses?". Se a resposta for não, permita que a poeira assente antes de agir.',
+      },
+      medium: {
+        levelTitle: 'Evitação Equilibrada (Percentil 25% - 75% | Pontos 5 a 8)',
+        meaning:
+          'Você demonstra excelente prudência emocional e senso tático de timing. Sabe selecionar quais batalhas merecem seu foco e não hesita em aguardar o momento ideal para conversar com serenidade.',
+        behaviorSigns: [
+          'Capacidade de dar um passo atrás para esfriar discussões explosivas.',
+          'Discernimento claro entre temas prioritários que exigem firmeza e picuinhas secundárias.',
+          'Não se deixa contaminar pelo calor do momento nem compra provocações baratas.',
+          'Retoma o diálogo no momento oportuno com dados sólidos e clima favorável.',
+        ],
+        calibrationTip:
+          'Ao adiar uma conversa sensível, sempre combine o momento de retorno: "Quero tratar disso com calma, vamos conversar amanhã às 14h", evitando que a pausa pareça indiferença.',
+      },
+      high: {
+        levelTitle: 'Alta Evitação (Percentil 75% - 100% | Pontos 9 a 12)',
+        meaning:
+          'A evitação é sua rota de fuga automática perante o desconforto de qualquer atrito. Você prefere silenciar, mudar de assunto ou transferir a responsabilidade, deixando que divergências críticas acumulem sob a superfície.',
+        behaviorSigns: [
+          'Forte desconforto físico ou ansiedade perante a perspectiva de ter conversas difíceis.',
+          'Acúmulo silencioso de insatisfações e mágoas que não são exteriorizadas.',
+          'Decisões essenciais são tomadas por terceiros sem a sua contribuição porque você não se posicionou.',
+          'Risco de a equipe interpretar a evitação como desinteresse, omissão ou falta de firmeza.',
+        ],
+        calibrationTip:
+          'Quebre a barreira da evitação usando os 4 passos da CNV: inicie com um fato neutro ("Notei que temos duas ideias diferentes") e um pedido simples de diálogo de 15 minutos.',
+      },
+    },
     eiReflectionQuestions: [
       'Estou me esquivando por prudência estratégica ou por medo e desconforto emocional diante do confronto?',
       'O silêncio atual está ajudando a amadurecer a solução ou apenas tornando o problema insolúvel amanhã?',
@@ -379,6 +543,47 @@ export const TKI_PROFILES: Record<TKIMode, ModeProfile> = {
       'Percepção de frieza, inflexibilidade e pouca preocupação com o bem-estar da equipe.',
       'Atritos constantes por apego a detalhes irrelevantes que desgastam o clima.',
     ],
+    levelInterpretations: {
+      low: {
+        levelTitle: 'Baixa Acomodação (Percentil 0% - 25% | Pontos 0 a 2)',
+        meaning:
+          'Você raramente abre mão de suas preferências ou pontos de vista em prol do bem-estar ou da harmonia com a outra pessoa. Tem grande dificuldade em ceder, podendo transparecer frieza, inflexibilidade ou apego excessivo ao ego.',
+        behaviorSigns: [
+          'Sensação de "derrota" ou perda de autoridade toda vez que precisa acolher a sugestão alheia.',
+          'Resistência em admitir que o colega tem uma solução melhor ou mais adequada para o momento.',
+          'Pouca atenção às necessidades emocionais, ao reconhecimento ou aos anseios da equipe.',
+          'Dificuldade em construir "crédito social" por meio de concessões generosas.',
+        ],
+        calibrationTip:
+          'Exercite a concessão intencional: quando um assunto for muito mais relevante para o colega do que para você, diga abertamente: "Isso é vital para você e confio no seu critério, apoio a sua decisão".',
+      },
+      medium: {
+        levelTitle: 'Acomodação Equilibrada (Percentil 25% - 75% | Pontos 3 a 7)',
+        meaning:
+          'Você equilibra com sabedoria a generosidade interpessoal e a defesa de suas prioridades essenciais. Sabe ser empático, flexível e acolhedor quando a coesão é importante, sem se anular ou perder o rumo.',
+        behaviorSigns: [
+          'Capacidade de ceder com desapego quando percebe que a outra parte possui a visão mais fundamentada.',
+          'Cultiva um clima de respeito mútuo e reciprocidade sadia nas relações profissionais.',
+          'Sabe dizer "não" com firmeza e elegância quando pedidos ultrapassam seus limites aceitáveis.',
+          'Constrói parcerias leais e duradouras dentro e fora da organização.',
+        ],
+        calibrationTip:
+          'Mantenha essa presença generosa: continue validando as contribuições dos colegas e promovendo a segurança psicológica no seu ambiente.',
+      },
+      high: {
+        levelTitle: 'Alta Acomodação (Percentil 75% - 100% | Pontos 8 a 12)',
+        meaning:
+          'Acomodar é seu reflexo primordial para evitar desentendimentos ou rejeição. Você tende a ceder prontamente e colocar as necessidades de todos à frente das suas, o que gera sobrecarga crônica e ressentimento velado.',
+        behaviorSigns: [
+          'Medo constante de desagradar, criar mal-estar ou ser considerado "difícil de lidar".',
+          'Concordar verbalmente com decisões que você desaprova internamente por receio de conflito.',
+          'Sensação de cansaço e frustração de "sempre abrir mão de tudo enquanto os outros impõem a vontade deles".',
+          'Risco de terceiros se aproveitarem da sua generosidade e transferirem demandas excessivas para você.',
+        ],
+        calibrationTip:
+          'Antes de concordar automaticamente com um pedido, pergunte a si mesmo: "Ao dizer sim para essa pessoa, estou dizendo não para as minhas prioridades vitais?". Pratique estabelecer limites saudáveis.',
+      },
+    },
     eiReflectionQuestions: [
       'Estou cedendo por genuína generosidade ou por medo velado de ser rejeitado(a) ou criticado(a)?',
       'Minha concordância rápida está construindo harmonia real ou apenas uma calma aparente com mágoa represada?',

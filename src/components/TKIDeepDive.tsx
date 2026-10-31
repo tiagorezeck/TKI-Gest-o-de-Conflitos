@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import { TKIAssessmentResult } from '../types/tki';
 import { TKI_PROFILES } from '../data/tkiProfiles';
-import { Sparkles, HeartHandshake, Brain, Lightbulb, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import {
+  Sparkles,
+  HeartHandshake,
+  Brain,
+  Lightbulb,
+  AlertTriangle,
+  CheckCircle2,
+  Layers,
+  Target,
+  ArrowRight,
+  Shield,
+  Compass,
+} from 'lucide-react';
+import { TKIStyleCards } from './TKIStyleCards';
+import { TKISituationalMatrix } from './TKISituationalMatrix';
 
 interface TKIDeepDiveProps {
   result: TKIAssessmentResult;
@@ -12,12 +26,28 @@ export const TKIDeepDive: React.FC<TKIDeepDiveProps> = ({ result }) => {
   const dominantProfile = TKI_PROFILES[dominantMode];
   const secondaryProfile = TKI_PROFILES[secondaryMode];
 
-  const [activeTab, setActiveTab] = useState<'dominant' | 'secondary' | 'einvc' | 'collaboration'>('dominant');
+  const [activeTab, setActiveTab] = useState<
+    'styles5' | 'dominant' | 'secondary' | 'conflicts' | 'interactions'
+  >('styles5');
 
   return (
     <div className="w-full rounded-2xl glass-card p-5 sm:p-8 border border-slate-800 shadow-2xl space-y-6">
       {/* Tab Navigation */}
       <div className="flex flex-wrap items-center gap-2 border-b border-slate-800 pb-3">
+        {/* 1. 5 Estilos */}
+        <button
+          onClick={() => setActiveTab('styles5')}
+          className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+            activeTab === 'styles5'
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+              : 'text-slate-400 hover:text-white hover:bg-slate-900'
+          }`}
+        >
+          <Layers className="w-4 h-4 text-indigo-300" />
+          <span>5 estilos</span>
+        </button>
+
+        {/* 2. Principal: [Estilo] */}
         <button
           onClick={() => setActiveTab('dominant')}
           className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
@@ -27,9 +57,10 @@ export const TKIDeepDive: React.FC<TKIDeepDiveProps> = ({ result }) => {
           }`}
         >
           <Sparkles className="w-4 h-4 text-amber-300" />
-          <span>Estilo Principal: {dominantProfile.portugueseName}</span>
+          <span>Principal: {dominantProfile.portugueseName}</span>
         </button>
 
+        {/* 3. Secundário: [Estilo] */}
         <button
           onClick={() => setActiveTab('secondary')}
           className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
@@ -38,33 +69,40 @@ export const TKIDeepDive: React.FC<TKIDeepDiveProps> = ({ result }) => {
               : 'text-slate-400 hover:text-white hover:bg-slate-900'
           }`}
         >
-          <span>Estilo Secundário: {secondaryProfile.portugueseName}</span>
+          <span>Secundário: {secondaryProfile.portugueseName}</span>
         </button>
 
+        {/* 4. Conflitos */}
         <button
-          onClick={() => setActiveTab('einvc')}
+          onClick={() => setActiveTab('conflicts')}
           className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
-            activeTab === 'einvc'
+            activeTab === 'conflicts'
               ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-600/30'
               : 'text-purple-300 hover:text-white hover:bg-slate-900'
           }`}
         >
           <Brain className="w-4 h-4" />
-          <span>Inteligência Emocional (IE) & CNV</span>
+          <span>Conflitos</span>
         </button>
 
+        {/* 5. Interações */}
         <button
-          onClick={() => setActiveTab('collaboration')}
+          onClick={() => setActiveTab('interactions')}
           className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
-            activeTab === 'collaboration'
+            activeTab === 'interactions'
               ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
               : 'text-slate-400 hover:text-white hover:bg-slate-900'
           }`}
         >
           <HeartHandshake className="w-4 h-4" />
-          <span>Interação com Outros Estilos</span>
+          <span>Interações</span>
         </button>
       </div>
+
+      {/* Tab 0: 5 Estilos & Seu Posicionamento */}
+      {activeTab === 'styles5' && (
+        <TKIStyleCards result={result} embedded={true} />
+      )}
 
       {/* Tab 1: Dominant Style Deep Dive */}
       {activeTab === 'dominant' && (
@@ -209,8 +247,8 @@ export const TKIDeepDive: React.FC<TKIDeepDiveProps> = ({ result }) => {
         </div>
       )}
 
-      {/* Tab 3: EI & NVC Reflection */}
-      {activeTab === 'einvc' && (
+      {/* Tab 3: Conflicts / EI & NVC Reflection */}
+      {activeTab === 'conflicts' && (
         <div className="space-y-6 animate-fadeIn">
           {/* Overuse & Underuse Summary */}
           {(overusedModes.length > 0 || underusedModes.length > 0) && (
@@ -240,38 +278,136 @@ export const TKIDeepDive: React.FC<TKIDeepDiveProps> = ({ result }) => {
             </div>
           )}
 
-          {/* EI 3 Self-Reflection Pillars */}
-          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
-            <h4 className="text-base font-bold text-purple-300 flex items-center gap-2">
-              <Brain className="w-5 h-5 text-purple-400" />
-              <span>3 Pilares de Autorreflexão com Inteligência Emocional (IE)</span>
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-slate-950 border border-purple-500/20 space-y-2">
-                <div className="font-bold text-amber-400 text-sm">1. Comportamentos em Excesso (&gt;75%)</div>
-                <p className="text-slate-300 leading-relaxed">
-                  • Estou recorrendo a este estilo no piloto automático?<br />
-                  • Em situações de estresse, qual emoção primária me domina (raiva, medo de perder o controle ou sobrecarga)?<br />
-                  • Como posso respirar por 3 segundos antes de responder por hábito?
-                </p>
+          {/* EI 3 Self-Reflection Pillars: Guia de Auto-Coaching Autônomo */}
+          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-5">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-1">
+                  <Brain className="w-3.5 h-3.5 text-purple-400" />
+                  <span>GUIA PRÁTICO DE AUTO-COACHING</span>
+                </span>
+                <span className="text-xs text-slate-400 font-medium hidden sm:inline">
+                  Desenvolvimento Comportamental Autônomo
+                </span>
+              </div>
+              <h4 className="text-lg font-black text-white">
+                3 Pilares de Autorreflexão: Protocolos de Autocontrole & Desbloqueio
+              </h4>
+              <p className="text-xs text-slate-300 leading-relaxed max-w-3xl">
+                Exercícios práticos e ferramentas que você pode aplicar sozinho em tempo real durante suas negociações e conversas difíceis para regular seus impulsos e expandir seu repertório.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs">
+              {/* Pilar 1: Excessos */}
+              <div className="p-4 rounded-xl bg-slate-950 border border-amber-500/30 flex flex-col justify-between space-y-3">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-extrabold text-amber-400 text-sm flex items-center gap-1.5">
+                      <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>1. Excessos (&gt;75%)</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                      CONTENÇÃO
+                    </span>
+                  </div>
+                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                    Você tende a acionar este modo como reflexo defensivo automático quando se sente sob ameaça, pressa ou sobrecarga.
+                  </p>
+
+                  <div className="pt-2 border-t border-slate-800/80 space-y-2">
+                    <div className="font-bold text-amber-300 text-xs">Exercício 1: Pausa dos 3 Segundos</div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                      Ao notar o ímpeto de responder de imediato, conte <strong>3, 2, 1</strong> mentalmente inflando o diafragma. Isso desativa o sequestro da amígdala cerebral antes da fala.
+                    </p>
+
+                    <div className="font-bold text-amber-300 text-xs">Exercício 2: Checagem de Intenção</div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                      Pergunte-se: <em>&quot;Estou reagindo para proteger meu ego/aliviar minha ansiedade, ou para construir o melhor resultado para o projeto?&quot;</em>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-lg bg-amber-950/20 border border-amber-500/20 text-[11px] text-amber-200">
+                  <strong>Ação Autônoma de Comunicação:</strong>
+                  <div className="italic mt-1 text-slate-300">
+                    &quot;Entendi os seus pontos. Preciso de 10 minutos para analisar estes dados e retorno com uma proposta técnica fundamentada.&quot;
+                  </div>
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950 border border-purple-500/20 space-y-2">
-                <div className="font-bold text-cyan-400 text-sm">2. Comportamentos em Déficit (&lt;25%)</div>
-                <p className="text-slate-300 leading-relaxed">
-                  • Que barreiras psicológicas ou medos me impedem de usar este estilo?<br />
-                  • Tenho receio de confrontos diretos ou de parecer intransigente?<br />
-                  • Quando uma necessidade minha é ignorada, tenho clareza para formular um pedido assertivo?
-                </p>
+              {/* Pilar 2: Déficits */}
+              <div className="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 flex flex-col justify-between space-y-3">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-extrabold text-cyan-400 text-sm flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>2. Déficits (&lt;25%)</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                      DESBLOQUEIO
+                    </span>
+                  </div>
+                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                    Estilos em déficit revelam pontos cegos ou receios psicológicos (medo de confrontos, medo de rejeição ou receio de parecer inflexível).
+                  </p>
+
+                  <div className="pt-2 border-t border-slate-800/80 space-y-2">
+                    <div className="font-bold text-cyan-300 text-xs">Exercício 1: Desafio de Micro-Passos</div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed pl-2 border-l-2 border-cyan-500/40">
+                      Escolha nesta semana 1 situação corriqueira de baixo risco para praticar: faça 1 pergunta incisiva, diga 1 &quot;não&quot; cortês ou pontue 1 limite de prazo inegociável.
+                    </p>
+
+                    <div className="font-bold text-cyan-300 text-xs">Exercício 2: Quebra de Crença Limitante</div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed pl-2 border-l-2 border-cyan-500/40">
+                      Substitua a crença <em>&quot;Se eu me posicionar, vou desgastar o clima&quot;</em> por: <strong>&quot;Limites claros e transparentes protegem o relacionamento a longo prazo&quot;</strong>.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-[11px] text-cyan-200">
+                  <strong>Ação Autônoma de Comunicação:</strong>
+                  <div className="italic mt-1 text-slate-300">
+                    &quot;Para garantirmos a entrega do projeto com a qualidade necessária, eu preciso que [requisito objetivo] seja formalizado até [data].&quot;
+                  </div>
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950 border border-purple-500/20 space-y-2">
-                <div className="font-bold text-emerald-400 text-sm">3. Treino da Colaboração Ativa (CL)</div>
-                <p className="text-slate-300 leading-relaxed">
-                  • Avaliei se o contexto dispõe de tempo e confiança suficientes para um processo ganha-ganha?<br />
-                  • Consegui separar a observação dos fatos dos meus julgamentos internos?<br />
-                  • Já mapeei com clareza as necessidades reais de ambas as partes?
-                </p>
+              {/* Pilar 3: Colaboração Ativa */}
+              <div className="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 flex flex-col justify-between space-y-3">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-extrabold text-emerald-400 text-sm flex items-center gap-1.5">
+                      <Target className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span>3. Colaboração (CL)</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      EXPANSÃO
+                    </span>
+                  </div>
+                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                    A Colaboração é a única modalidade que soluciona o problema na raiz através do ganha-ganha, exigindo maturidade relacional.
+                  </p>
+
+                  <div className="pt-2 border-t border-slate-800/80 space-y-2">
+                    <div className="font-bold text-emerald-300 text-xs">Exercício 1: Checklist de Viabilidade</div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed pl-2 border-l-2 border-emerald-500/40">
+                      Valide se o contexto atende aos 3 pré-requisitos: (a) Há tempo suficiente para diálogo? (b) Há confiança mínima entre as partes? (c) O tema é estratégico para ambos?
+                    </p>
+
+                    <div className="font-bold text-emerald-300 text-xs">Exercício 2: Escuta Sem Contra-Ataque</div>
+                    <p className="text-slate-300 text-[11px] leading-relaxed pl-2 border-l-2 border-emerald-500/40">
+                      Escute a demanda da outra pessoa por 2 minutos completos sem rebater. Valide: <em>&quot;O que compreendi é que sua maior preocupação é [X]. É isso mesmo?&quot;</em>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-lg bg-emerald-950/20 border border-emerald-500/20 text-[11px] text-emerald-200">
+                  <strong>Ação Autônoma de Comunicação:</strong>
+                  <div className="italic mt-1 text-slate-300">
+                    &quot;O que precisa acontecer concretamente para que esta decisão atenda tanto as suas prioridades quanto as minhas metas operacionais?&quot;
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -327,36 +463,51 @@ export const TKIDeepDive: React.FC<TKIDeepDiveProps> = ({ result }) => {
         </div>
       )}
 
-      {/* Tab 4: Collaboration Tips */}
-      {activeTab === 'collaboration' && (
-        <div className="space-y-4 animate-fadeIn">
-          <h4 className="text-sm font-bold text-slate-200">
-            Guia de Convivência e Alinhamento: Como o estilo {dominantProfile.portugueseName} interage com outros perfis
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {dominantProfile.collaborationTips.map((tip) => {
-              const target = TKI_PROFILES[tip.targetMode];
-              return (
-                <div
-                  key={tip.targetMode}
-                  className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-2"
-                >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="w-2.5 h-2.5 rounded-full shrink-0"
-                      style={{ backgroundColor: target.color.accent }}
-                    />
-                    <span className="font-bold text-xs text-white">
-                      Ao lidar com quem prioriza {target.portugueseName} ({target.englishName}):
-                    </span>
+      {/* Tab 4: Interactions (Guia de Convivência & Matriz Situacional) */}
+      {activeTab === 'interactions' && (
+        <div className="space-y-8 animate-fadeIn">
+          {/* 1. Guia de Convivência por Perfil (Primeiro Card) */}
+          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+            <div className="border-b border-slate-800 pb-3">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-400">
+                GUIA DE CONVIVÊNCIA INTERPESSOAL
+              </span>
+              <h4 className="text-base sm:text-lg font-bold text-white mt-1">
+                Como o seu estilo {dominantProfile.portugueseName} interage com os outros 4 perfis
+              </h4>
+              <p className="text-xs text-slate-300 mt-0.5">
+                Diretrizes de alinhamento e mitigação de atritos ao lidar com interlocutores que priorizam modos diferentes do seu:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {dominantProfile.collaborationTips.map((tip) => {
+                const target = TKI_PROFILES[tip.targetMode];
+                return (
+                  <div
+                    key={tip.targetMode}
+                    className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 hover:border-slate-700 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: target.color.accent }}
+                      />
+                      <span className="font-bold text-xs text-white">
+                        Ao lidar com quem prioriza {target.portugueseName} ({target.englishName}):
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-relaxed pl-3.5 border-l-2 border-slate-800">
+                      {tip.advice}
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed pl-4 border-l-2 border-slate-800">
-                    {tip.advice}
-                  </p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
+
+          {/* 2. Matriz Situacional dos 8 Atributos (Segundo Card) */}
+          <TKISituationalMatrix />
         </div>
       )}
     </div>

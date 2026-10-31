@@ -39,6 +39,13 @@ export interface ModeScore {
   normDescription: string;
 }
 
+export interface ModeLevelDetail {
+  levelTitle: string;
+  meaning: string;
+  behaviorSigns: string[];
+  calibrationTip: string;
+}
+
 export interface ModeProfile {
   id: TKIMode;
   code: TKICode;
@@ -63,6 +70,7 @@ export interface ModeProfile {
   strengths: string[];
   overuseRisks: string[]; // Riscos de superutilização (>75%)
   underuseRisks: string[]; // Riscos de subutilização (<25%)
+  levelInterpretations: Record<PercentileLevel, ModeLevelDetail>;
   eiReflectionQuestions: string[]; // Autorreflexão com Inteligência Emocional
   nvcActionSteps: string[]; // 4 passos de Comunicação Não-Violenta (CNV)
   communicationTips: string[];

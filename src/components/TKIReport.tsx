@@ -203,7 +203,7 @@ export const TKIReport: React.FC<TKIReportProps> = ({
       {/* Percentile Bars */}
       <TKIPercentileBars result={result} />
 
-      {/* In-depth Analysis (Deep Dive) */}
+      {/* In-depth Analysis (Deep Dive & 5 Estilos) */}
       <TKIDeepDive result={result} />
 
       {/* Complete Answers History Accordion */}
